@@ -88,7 +88,7 @@ wuff() {
     # ruff
     if [ "$is_ruff_only" == true ]; then
         echo -e "============= ${YELLOW}RUNNING RUFF${NC} ================"
-        if [ is_fix == true ]; then
+        if [ "$is_fix" == true ]; then
             echo "Fixing available linting errors..."
             ruff "$filename" --fix
         else
