@@ -8,7 +8,7 @@ NC='\033[0m'
 
 print_help() {
     echo -e "Usage:"
-    echo -e "${RED}\twoof <python_script.py> [TAGS]"
+    echo -e "${RED}\twuff <python_script.py> [TAGS]"
 
     echo -e "${NC}Description:"
     echo -e "\tLint the python script using ruff and black."
@@ -22,10 +22,10 @@ print_help() {
 }
 
 
-woof() {
+wuff() {
     # check if the number of arguments is less than 1
     if [ "$#" -lt 1 ]; then
-        echo -e "${RED}Usage: woof <python_script.py> [TAGS]"
+        echo -e "${RED}Usage: wuff <python_script.py> [TAGS]"
         echo -e "${NC}Use --help for more information."
         return 0
     fi
