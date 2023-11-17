@@ -38,7 +38,7 @@ wuff() {
         if [ -e "$1" ]; then
             filename=$1
         else
-            echo -e "${RED}File does asdfnot exist: ${NC}'$filename'"
+            echo -e "${RED}File does not exist: ${NC}'$1'"
             return 0
         fi
     fi
