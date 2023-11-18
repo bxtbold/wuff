@@ -43,24 +43,24 @@ wuff() {
         fi
     fi
 
-    shift  # Remove the first argument (filename) from the list of arguments
-
     # initialize tag variables
     is_fix=false
     is_ruff_only=true
     is_black_only=true
     unknown_tag=false
 
-    # loop through the remaining arguments (check for tags)
+    # loop through the arguments (check for tags)
     for tag in "$@"; do
-        if [ "$tag" == "--help" ]; then
+        if [[ "$tag" == "$1" ]]; then
+            :  # pass when an argument is the filename
+        elif [[ "$tag" == "--help" ]]; then
             print_help
             return 0
-        elif [ "$tag" == "--fix" ]; then
+        elif [[ "$tag" == "--fix" ]]; then
             is_fix=true
-        elif [ "$tag" == "--ruff" ]; then
+        elif [[ "$tag" == "--ruff" ]]; then
             is_black_only=false
-        elif [ "$tag" == "--black" ]; then
+        elif [[ "$tag" == "--black" ]]; then
             is_ruff_only=false
         else
             echo -e "${RED}Unknown tag detected:${NC}" $tag
@@ -68,27 +68,27 @@ wuff() {
         fi
     done
 
-    if [ "$unknown_tag" == true ]; then
+    if [[ "$unknown_tag" == true ]]; then
         echo -e "Skipping unknown tag and continue..."
     fi
 
     # check if ruff and black tags are disabled at the same time
-    if [ "$is_ruff_only" == false ] && [ "$is_black_only" == false ]; then
+    if [[ "$is_ruff_only" == false ]] && [[ "$is_black_only" == false ]]; then
         is_ruff_only=true
         is_black_only=true
     fi
 
     # black
-    if [ "$is_black_only" == true ]; then
+    if [[ "$is_black_only" == true ]]; then
         echo -e "============ ${YELLOW}RUNNING BLACK${NC} ==============="
         black "$filename"
         echo -e "${GREEN}Black is completed for: ${NC}'$filename'"
     fi
 
     # ruff
-    if [ "$is_ruff_only" == true ]; then
+    if [[ "$is_ruff_only" == true ]]; then
         echo -e "============= ${YELLOW}RUNNING RUFF${NC} ================"
-        if [ "$is_fix" == true ]; then
+        if [[ "$is_fix" == true ]]; then
             echo "Fixing available linting errors..."
             ruff "$filename" --fix
         else
