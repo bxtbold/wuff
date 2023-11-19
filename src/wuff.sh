@@ -81,7 +81,7 @@ wuff() {
     # black
     if [[ "$is_black_only" == true ]]; then
         echo -e "============ ${YELLOW}RUNNING BLACK${NC} ==============="
-        black "$filename"
+        python3 -m black "$filename"
         echo -e "${GREEN}Black is completed for: ${NC}'$filename'"
     fi
 
@@ -90,9 +90,9 @@ wuff() {
         echo -e "============= ${YELLOW}RUNNING RUFF${NC} ================"
         if [[ "$is_fix" == true ]]; then
             echo "Fixing available linting errors..."
-            ruff "$filename" --fix
+            python3 -m ruff "$filename" --fix
         else
-            ruff "$filename"
+            python3 -m ruff "$filename"
         fi
         echo -e "${GREEN}Ruff is completed for: ${NC}'$filename'"
     fi
