@@ -17,6 +17,15 @@ else
     echo -e "${RED}Operating system ($uname) is not supported yet."
     exit 1
 fi
+
+# check if python version is at least 3.8
+if python3 $PWD/src/check_version.py; then
+    :
+else
+    echo -e "${RED}Please upgrade or change python 3 version to at least 3.8 or higher."
+    exit 1
+fi
+
 # select shell source
 if [[ "$shell" == "/bin/bash" ]]; then
     src=~/.bashrc
