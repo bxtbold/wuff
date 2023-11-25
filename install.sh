@@ -4,6 +4,11 @@ GREEN='\033[0;32m'
 
 echo "Installing wuff..."
 
+# install dependencies
+sudo apt update -y
+sudo apt install python3-pip -y
+pip3 install -r $PWD/requirement.txt
+
 os=""
 shell=$SHELL
 os_name=$(uname)
