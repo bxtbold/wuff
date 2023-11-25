@@ -2,6 +2,8 @@
 
 Wuff employs black and ruff for simplifying well-formatted python projects.
 
+Currently, wuff is compatibile with both Linux and MacOS and required to have a minimum Python 3.8 to use it.
+
 ## Getting Started
 
 ### Installation
